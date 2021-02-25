@@ -17,7 +17,7 @@ class App extends Component {
       feed: [
         {
           id: '1',
-          nome: 'Lucas Silva',
+          nome: 'Gabriel Bonin',
           descricao: 'Mais um dia de muitos bugs :)',
           imgperfil:
             'https://sujeitoprogramador.com/instareact/fotoPerfil1.png',
