@@ -19,7 +19,7 @@ class Lista extends Component{
 
     return(
       <Text>
-        {feed.likers}
+        {feed.likers} {feed.likers > 1 ? 'curtidas' : 'curtida'}
       </Text>
     );
     
