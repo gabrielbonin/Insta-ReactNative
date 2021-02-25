@@ -8,6 +8,32 @@ class Lista extends Component{
       feed: this.props.data
     };
     this.showLikes = this.showLikes.bind(this);
+    this.like = this.like.bind(this);
+    this.carregaIcone = this.carregaIcone.bind(this);
+  }
+
+  like(){
+    let feed = this.state.feed;
+
+    if(feed.likeada === true){
+      this.setState({
+        feed:{
+          ...feed,
+          likeada: false,
+          likers:  feed.likers -1
+        }
+      });
+    }else{
+      this.setState({
+        feed:{
+          ...feed,
+          likeada: true,
+          likers:  feed.likers + 1
+        }
+      });
+    }
+
+
   }
 
   showLikes(likers){
@@ -18,11 +44,17 @@ class Lista extends Component{
     }
 
     return(
-      <Text>
+      <Text style={styles.likers}>
         {feed.likers} {feed.likers > 1 ? 'curtidas' : 'curtida'}
       </Text>
     );
     
+  }
+
+  carregaIcone(likeada){
+    return likeada ? require('../../img/likeada.png') 
+     : 
+     require('../../img/like.png') 
   }
 
   render(){
@@ -34,8 +66,11 @@ class Lista extends Component{
         </View>
         <Image resizeMode="cover" source={{uri: this.state.feed.imgPublicacao}} style={styles.fotoPublicacao}/>
         <View style={styles.areaBtn}>
-          <TouchableOpacity>
-            <Image source={require('../../img/like.png')} style={styles.iconLike}/>
+          <TouchableOpacity onPress={this.like}>
+            <Image 
+            source={this.carregaIcone(this.state.feed.likeada)} 
+            
+            style={styles.iconLike}/>
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconSend}>
             <Image source={require('../../img/send.png')} style={styles.iconLike}/>
@@ -103,6 +138,10 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     fontSize: 15,
     color: '#000'
+  }, 
+  likers:{
+    fontWeight: 'bold',
+    paddingLeft: 5
   }
 });
 
