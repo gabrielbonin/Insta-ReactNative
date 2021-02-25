@@ -80,6 +80,7 @@ class App extends Component {
           </TouchableOpacity>
         </View>
         <FlatList
+          keyExtractor={(item)=> item.id}
           showsVerticalScrollIndicator={false}
           data={this.state.feed}
           renderItem={({item}) => <Lista data={item} />}
